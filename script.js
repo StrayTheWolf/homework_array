@@ -32,22 +32,16 @@ console.log(mapArray);
 //filter
 
 function filter (array, callback) {
-    let tempArray = [];
-    let resultArray =[];
+    let resultArray = [];
     for(let i = 0; i < array.length; i++){
-
-        tempArray[i] = callback(array[i]); // передаем во временный массив все значения исходного с уловием проверки из callback
-
-        if(tempArray[i] !== undefined){   // проверяем во временном масиве, если значение undefined пропускаем, если значение есть, добавляем в новый массив
-            resultArray.push(tempArray[i]);
+        if(callback(array[i])){
+            resultArray.push(array[i])
         }
     }
     return resultArray;
 }
 
-const filteredArray = filter([2,15,5,7,16,20,1],(callback)=>{
-    if(callback < 10){
-        return callback;
-    }
+const filteredArray = filter([2,15,5,7,16,20,1],(item)=>{
+    return item > 10;
 })
 console.log(filteredArray);
